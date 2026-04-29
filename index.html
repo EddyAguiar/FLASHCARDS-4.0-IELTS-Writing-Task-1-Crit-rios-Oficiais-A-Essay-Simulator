@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>IELTS Writing Task 1 - Simulador com Critérios Oficiais e Exemplos 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fc;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #0a2b3e;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            border-bottom: 3px solid #2c7da0;
+            display: inline-block;
+            width: auto;
+            padding-bottom: 8px;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #2c3e66;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .flashcards-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            background: #0a2b3e;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .flashcard {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border-top: 6px solid;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+
+        .flashcard-header {
+            background: #f8fafc;
+            padding: 18px 20px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .flashcard-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.2s ease;
+            background: white;
+        }
+
+        .flashcard-content.active {
+            max-height: 850px;
+            padding: 20px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .criteria-badge {
+            background: #2c7da0;
+            color: white;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .band-highlight {
+            background: #eef2ff;
+            padding: 12px;
+            border-radius: 16px;
+            margin: 15px 0;
+            border-left: 5px solid #2c7da0;
+        }
+
+        .example-text {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .practice-area {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .exam-question {
+            background: #fff8eb;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border-left: 8px solid #2c7da0;
+        }
+
+        .exam-question h3 {
+            color: #0a2b3e;
+            margin-bottom: 10px;
+        }
+
+        .diagram-placeholder {
+            background: #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #2c3e66;
+        }
+
+        textarea {
+            width: 100%;
+            height: 280px;
+            padding: 18px;
+            font-family: 'Segoe UI', monospace;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            resize: vertical;
+            transition: 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #2c7da0;
+            box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #2c7da0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f5e7a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #2c3e66;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #1f2c4b;
+        }
+
+        .feedback-container {
+            margin-top: 30px;
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .criteria-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .criteria-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .word-count {
+            font-size: 0.9rem;
+            background: #eef2ff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            .flashcards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container">
+    <h1>📊 IELTS Academic Writing Task 1</h1>
+    <div class="subtitle">Simulador com Critérios Oficiais + Perguntas Reais 2026 | Gráficos, Tabelas, Mapas, Processos | Comentários em Português</div>
+</div>
+
+<!-- FLASHCARDS: CRITÉRIOS OFICIAIS PARA TASK 1 -->
+<div class="flashcards-section">
+    <div class="section-title">📚 Critérios de Avaliação IELTS Writing Task 1</div>
+    <div class="flashcards-grid">
+        
+        <!-- Flashcard 1: Task Achievement -->
+        <div class="flashcard" style="border-top-color: #ff6b4a;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>🎯</span> Task Achievement (TA) - 25%
+                <span class="criteria-badge">Realização da Tarefa</span>
+            </div>
+            <div class="flashcard-content">
+                <p><strong>Band 7:</strong> Cobre os requisitos da tarefa de forma relevante e precisa. (Academic) Principais características são selecionadas, cobertas e claramente destacadas. Apresenta uma visão geral clara.</p>
+                <div class="band-highlight">
+                    <strong>⭐ Band 8-9:</strong> Todas as exigências da tarefa são total e apropriadamente satisfeitas. Características principais habilmente selecionadas e claramente apresentadas. Lapsos extremamente raros.
+                </div>
+                <p><strong>📌 O que o examinador avalia:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>✔️ Você selecionou as principais características/features?</li>
+                    <li>✔️ Forneceu detalhes suficientes para ilustrar essas características?</li>
+                    <li>✔️ Os dados, números e tendências são relatados com precisão?</li>
+                    <li>✔️ Você fez comparações relevantes (quando apropriado)?</li>
+                    <li>✔️ A visão geral (overview) identifica as tendências principais?</li>
+                </ul>
+                <div class="example-text">
+                    💡 <strong>Dica de ouro:</strong> NUNCA esqueça o parágrafo de overview (geral). Ele deve vir logo após a introdução, destacando as tendências principais, não os detalhes. Isso separa Band 6 de Band 7+.
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 2: Coherence & Cohesion -->
+        <div class="flashcard" style="border-top-color: #3b82f6;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>🔗</span> Coherence & Cohesion (CC) - 25%
+                <span class="criteria-badge">Coerência e Coesão</span>
+            </div>
+            <div class="flashcard-content">
+                <p><strong>Band 7:</strong> Informações e ideias organizadas logicamente. Progressão clara ao longo da resposta. Uso flexível de conectivos, referências e substituições.</p>
+                <div class="band-highlight">
+                    <strong>⭐ Band 8-9:</strong> Mensagem seguida sem esforço. Coesão gerenciada para raramente chamar atenção. Paragrafação habilidosa.
+                </div>
+                <ul style="margin-left: 20px;">
+                    <li>✔️ Organização lógica das informações</li>
+                    <li>✔️ Uso apropriado de parágrafos (introdução, overview, corpo)</li>
+                    <li>✔️ Sequenciamento lógico dentro e entre parágrafos</li>
+                    <li>✔️ Uso flexível de conectores (whereas, in contrast, similarly)</li>
+                </ul>
+                <div class="example-text">
+                    💡 <strong>Conectores essenciais:</strong> "Overall", "In detail", "By contrast", "Similarly", "In comparison", "On the other hand", "While", "Whereas", "followed by".
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 3: Lexical Resource -->
+        <div class="flashcard" style="border-top-color: #10b981;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>📖</span> Lexical Resource (LR) - 25%
+                <span class="criteria-badge">Recurso Lexical</span>
+            </div>
+            <div class="flashcard-content">
+                <p><strong>Band 7:</strong> Recurso suficiente para permitir flexibilidade e precisão. Habilidade de usar itens menos comuns. Consciência de estilo e colocação.</p>
+                <div class="band-highlight">
+                    <strong>⭐ Band 8-9:</strong> Amplo recurso usado fluentemente com flexibilidade. Uso habilidoso de itens incomuns/idiomáticos.
+                </div>
+                <p><strong>📌 Vocabulário para descrever dados:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>📈 <strong>Aumento:</strong> rose, increased, grew, climbed, peaked, doubled, tripled</li>
+                    <li>📉 <strong>Queda:</strong> fell, dropped, declined, decreased, plummeted, halved</li>
+                    <li>📊 <strong>Estabilidade:</strong> remained stable, stayed constant, plateaued</li>
+                    <li>🔄 <strong>Comparação:</strong> whereas, in contrast, similarly, compared to, followed by</li>
+                </ul>
+                <div class="example-text">
+                    💡 Evite repetição: não use "increased" cinco vezes. Varie com "rose", "experienced growth", "saw an upward trend".
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 4: Grammatical Range -->
+        <div class="flashcard" style="border-top-color: #8b5cf6;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>📝</span> Grammatical Range (GRA) - 25%
+            </div>
+            <div class="flashcard-content">
+                <p><strong>Band 7:</strong> Variedade de estruturas complexas com alguma flexibilidade e precisão. Gramática geralmente bem controlada. Frases sem erros frequentes.</p>
+                <div class="band-highlight">
+                    <strong>⭐ Band 8-9:</strong> Ampla variedade de estruturas usada com flexibilidade e precisão. Maioria das frases sem erros.
+                </div>
+                <div class="example-text">
+                    ✅ <strong>Exemplos de estruturas para Task 1:</strong><br>
+                    • Comparativo: "France attracted more tourists than Spain, with 75 million compared to 60 million."<br>
+                    • Voz passiva: "The beans are roasted and then ground into fine particles."<br>
+                    • Cláusulas complexas: "While car use declined, the proportion of cyclists doubled between 2000 and 2020."
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 5: Tipos de gráfico + estratégias -->
+        <div class="flashcard" style="border-top-color: #f59e0b;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>📈</span> Tipos de Task 1 + Estratégias
+            </div>
+            <div class="flashcard-content">
+                <p><strong>Line Graph (linhas):</strong> Foco em tendências ao longo do tempo. Overview = tendência geral (subiu/desceu/flutuou).</p>
+                <p><strong>Bar Chart (barras):</strong> Comparação entre categorias. Agrupe dados similares. Destaque o maior/menor.</p>
+                <p><strong>Pie Chart (pizza):</strong> Proporções. Descreva as fatias dominantes e as menores. Use porcentagens.</p>
+                <p><strong>Table (tabela):</strong> Dados numéricos. Compare linhas e colunas. Destaque valores extremos.</p>
+                <p><strong>Diagram/Process:</strong> Descreva etapas em ordem. Use voz passiva. Overview = número de estágios.</p>
+                <p><strong>Map:</strong> Mudanças ao longo do tempo (construído/substituído/transformado). Destaque transformações.</p>
+                <div class="band-highlight">
+                    ⏱️ Recomendação: 20 minutos. Planejamento (3 min) → Escrita (15 min) → Revisão (2 min). Mínimo 150 palavras.
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcard 6: Erros comuns Task 1 -->
+        <div class="flashcard" style="border-top-color: #ef4444;" onclick="toggleCard(this)">
+            <div class="flashcard-header">
+                <span>⚠️</span> Erros que impedem Band 7+
+            </div>
+            <div class="flashcard-content">
+                <ul style="margin-left: 20px;">
+                    <li>❌ <strong>Sem overview</strong> - simplesmente listar dados sem identificar tendências principais.</li>
+                    <li>❌ <strong>Copiar frases do enunciado</strong> - paráfrase é essencial.</li>
+                    <li>❌ <strong>Opinião pessoal</strong> - "I think", "in my opinion" não são permitidos na Task 1.</li>
+                    <li>❌ <strong>Descrever cada número individualmente</strong> - agrupe e compare.</li>
+                    <li>❌ <strong>Menos de 150 palavras</strong> - penalização direta.</li>
+                    <li>❌ <strong>Usar bullet points ou lista</strong> - apenas texto conectado.</li>
+                </ul>
+                <div class="example-text">
+                    💡 Lembrete: Task 1 é um relato objetivo de dados, não uma redação argumentativa. Nunca dê sua opinião ou sugestões.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ÁREA DE PRÁTICA COM PERGUNTA REAL 2026 -->
+<div class="practice-area">
+    <div class="exam-question">
+    <h3>📌 IELTS Academic Writing Task 1 – Pergunta Real (Março 2026)</h3>
+    <p><strong>O gráfico de linhas abaixo mostra o número de turistas estrangeiros (em milhões) que visitaram a França, Espanha e Japão entre 1990 e 2020.</strong></p>
+    
+    <!-- GRÁFICO COM TAMANHO CONTROLADO -->
+    <div class="diagram-placeholder" style="text-align: center;">
+        <img src="Task 1 - turistas estrangeiros.webp" alt="Gráfico de turistas estrangeiros" style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="data-caption" style="margin-top: 8px;">📊 Turistas internacionais (em milhões) - França, Espanha e Japão (1990-2020)</div>
+    </div>
+
+    <p><strong>Tarefa:</strong> Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.</p>
+</div>    <p style="margin-top: 10px; font-size: 0.85rem; background: #e6f7e6; padding: 8px; border-radius: 12px;">📌 Dados extraídos da imagem <strong>Task 1 - turistas estrangeiros.webp</strong> — Pergunta real reportada em Março 2026 (IELTS Academic).</p>
+</div>
+        <p><em>Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.</em></p>
+        <p style="margin-top: 10px; font-size: 0.9rem; background: #e6f7e6; padding: 8px; border-radius: 12px;">📌 Fonte: https://ielts.preptical.com/writing/ielts-writing-questions-2026/ (Pergunta real - Março 2026)</p>
+    </div>
+
+    <textarea id="essayInput" placeholder="Escreva sua resposta para o Task 1 aqui...&#10;&#10;Exemplo de estrutura:&#10;1º parágrafo: Introdução (paráfrase do gráfico)&#10;2º parágrafo: Overview (principais tendências)&#10;3º parágrafo: Detalhes/Comparações&#10;4º parágrafo: Mais detalhes ou conclusão breve"></textarea>
+
+    <div class="button-group">
+        <button class="btn btn-primary" onclick="evaluateEssay()">📊 Avaliar minha resposta (Critérios IELTS Task 1)</button>
+        <button class="btn btn-secondary" onclick="clearEssay()">🗑️ Limpar resposta</button>
+    </div>
+
+    <div id="feedbackArea" class="feedback-container" style="display: none;">
+        <!-- feedback dinâmico -->
+    </div>
+</div>
+
+<script>
+    function toggleCard(card) {
+        const content = card.querySelector('.flashcard-content');
+        if (content) content.classList.toggle('active');
+    }
+
+    function clearEssay() {
+        document.getElementById('essayInput').value = '';
+        document.getElementById('feedbackArea').style.display = 'none';
+    }
+
+    function evaluateEssay() {
+        const essay = document.getElementById('essayInput').value.trim();
+        if (essay.length === 0) {
+            alert("Por favor, escreva sua resposta antes de avaliar.");
+            return;
+        }
+
+        const words = essay.split(/\s+/).filter(w => w.length > 0);
+        const wordCount = words.length;
+        
+        let feedback = {
+            taskAchievement: { passed: false, details: [], score: 0 },
+            coherence: { passed: false, details: [], score: 0 },
+            vocabulary: { passed: false, details: [], score: 0 },
+            grammar: { passed: false, details: [], score: 0 },
+            wordCountOk: false
+        };
+
+        if (wordCount >= 150) feedback.wordCountOk = true;
+
+        // 1. TASK ACHIEVEMENT: overview + seleção de dados + comparações
+        const hasOverview = /\b(overall|in summary|to summarise|em resumo|no geral|visão geral|de modo geral)\b/i.test(essay);
+        const comparesCountries = /\b(France|Espanha|Spain|Japão|Japan|França|Espanha|Japão).{0,30}(while|whereas|compared to|in contrast|enquanto|ao passo que|em comparação|em contraste)\b/i.test(essay);
+        const hasDataPoints = /\b([0-9]{1,3}\s?(million|milhões|%|percent|m|mil))\b/i.test(essay);
+        
+        if (hasOverview && comparesCountries && hasDataPoints) {
+            feedback.taskAchievement.passed = true;
+            feedback.taskAchievement.score = 7;
+            feedback.taskAchievement.details.push("✅ Task Achievement adequado: você incluiu overview, fez comparações relevantes entre os países e usou dados específicos.");
+        } else {
+            feedback.taskAchievement.score = 5;
+            if (!hasOverview) feedback.taskAchievement.details.push("⚠️ ATENÇÃO: Você não incluiu um parágrafo de 'overview' destacando as tendências principais. Isso é essencial para Band 7+.");
+            if (!comparesCountries) feedback.taskAchievement.details.push("⚠️ Faça comparações claras entre os países (ex: 'France attracted more tourists than Spain, whereas Japan saw a decline').");
+            if (!hasDataPoints) feedback.taskAchievement.details.push("⚠️ Use dados numéricos específicos do gráfico para apoiar sua descrição.");
+        }
+        
+        // Verifica se descreveu as tendências corretamente (França/Espanha sobem, Japão cai)
+        const correctTrend = /(France|França).{0,50}(increase|rise|grow|aumento|crescimento).{0,100}(Spain|Espanha).{0,50}(increase|rise|grow|aumento)/i.test(essay) &&
+                             /(Japan|Japão).{0,50}(decline|fall|drop|decrease|queda|diminuição)/i.test(essay);
+        if (!correctTrend && feedback.taskAchievement.score >= 6) {
+            feedback.taskAchievement.details.push("💡 Revise as tendências: França e Espanha aumentaram; Japão diminuiu gradualmente.");
+        }
+
+        // 2. COHERENCE & COHESION: conectores + paragrafação
+        const connectors = /\b(however|moreover|furthermore|consequently|on the other hand|in addition|nevertheless|whereas|while|in contrast|similarly|compared to|followed by|por outro lado|além disso|enquanto|em contraste|em comparação)\b/i;
+        const hasConnectors = connectors.test(essay);
+        const paragraphs = essay.split(/\n+/).filter(p => p.trim().length > 30).length;
+        
+        if (hasConnectors && paragraphs >= 3) {
+            feedback.coherence.passed = true;
+            feedback.coherence.score = 7;
+            feedback.coherence.details.push("✅ Boa coerência e coesão: uso adequado de conectores e estrutura de parágrafos.");
+        } else {
+            feedback.coherence.score = 5;
+            if (!hasConnectors) feedback.coherence.details.push("⚠️ Use conectores de comparação e contraste: 'whereas', 'in contrast', 'similarly', 'compared to'.");
+            if (paragraphs < 3) feedback.coherence.details.push("⚠️ Organize sua resposta em pelo menos 3-4 parágrafos (introdução, overview, corpo de detalhes).");
+        }
+
+        // 3. LEXICAL RESOURCE: vocabulário para dados
+        const variedVocab = /\b(rose|increased|grew|climbed|peaked|doubled|tripled|fell|dropped|declined|decreased|plummeted|halved|remained stable|stayed constant|plateaued|fluctuated)\b/i;
+        const hasVariedVocab = (essay.match(variedVocab) || []).length >= 3;
+        
+        if (hasVariedVocab) {
+            feedback.vocabulary.passed = true;
+            feedback.vocabulary.score = 7;
+            feedback.vocabulary.details.push("✅ Bom uso de vocabulário para descrever tendências (rose, declined, remained stable, etc.).");
+        } else {
+            feedback.vocabulary.score = 5;
+            feedback.vocabulary.details.push("⚠️ Varie o vocabulário para descrever dados: evite repetir 'increased'. Use 'rose', 'grew', 'experienced growth', 'peaked'.");
+        }
+        
+        // Verifica paráfrase (evitar cópia do enunciado)
+        const copiedPhrase = /the line graph shows the number of overseas tourists/i.test(essay.substring(0, 120));
+        if (copiedPhrase) {
+            feedback.vocabulary.details.push("⚠️ Evite copiar frases do enunciado. Parafraseie: 'The line graph illustrates...', 'The chart compares...'");
+        }
+
+        // 4. GRAMMAR: estruturas complexas e precisão
+        const complexStructure = /\b(while|whereas|although|despite|compared to|which|that|when|after|before)\b/i.test(essay);
+        const grammarErrors = /\b(people is|student is|they believes|he don't|we was|a people|the informations|more better|most biggest)\b/i.test(essay);
+        
+        if (complexStructure && !grammarErrors) {
+            feedback.grammar.passed = true;
+            feedback.grammar.score = 7;
+            feedback.grammar.details.push("✅ Boa variedade gramatical com estruturas complexas e precisão adequada.");
+        } else {
+            feedback.grammar.score = 5;
+            if (!complexStructure) feedback.grammar.details.push("⚠️ Incorpore estruturas complexas: 'While France saw growth, Japan experienced a decline over the same period.'");
+            if (grammarErrors) feedback.grammar.details.push("⚠️ Revise erros gramaticais comuns (concordância, tempos verbais).");
+        }
+
+        // Cálculo da banda
+        let totalScore = (feedback.taskAchievement.score + feedback.coherence.score + feedback.vocabulary.score + feedback.grammar.score) / 4;
+        let wordBonus = (wordCount >= 150 && wordCount <= 200) ? 0.2 : (wordCount < 150 ? -0.8 : 0);
+        let finalBand = Math.min(9, Math.max(4, totalScore + wordBonus));
+        
+        let bandMessage = "";
+        if (finalBand >= 7.5 && wordCount >= 150) {
+            bandMessage = "🌟 Excelente! Sua resposta atende aos critérios Band 7.5+ para Task 1. Continue refinando a precisão lexical e as comparações.";
+        } else if (finalBand >= 6.5) {
+            bandMessage = "📈 Bom trabalho! Você está no caminho para Band 6.5–7.0. Foque em melhorar o overview e a variedade de vocabulário.";
+        } else if (finalBand >= 5.5) {
+            bandMessage = "📌 Sua resposta tem uma base. Reveja o feedback e pratique a estrutura (introdução → overview → detalhes).";
+        } else {
+            bandMessage = "📖 Continue praticando! Lembre-se: sempre inclua um overview, use conectores de comparação e atinja 150 palavras.";
+        }
+
+        let html = `
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div>
+                    <span class="score-badge" style="background: #2c7da020; color: #0a4b6e;">📝 Palavras: ${wordCount} | Mínimo: 150</span>
+                    <span class="score-badge" style="background: #0a2b3e20; color: #0a2b3e;">🎓 Banda prevista: ${finalBand.toFixed(1)}</span>
+                </div>
+                <div>${!feedback.wordCountOk && wordCount < 150 ? "<span class='word-count' style='background:#fee2e2;'>⚠️ Abaixo de 150 palavras — necessário para TA</span>" : "<span class='word-count'>✅ Comprimento adequado</span>"}</div>
+            </div>
+            <div class="band-highlight" style="margin-bottom: 20px;">
+                <strong>💡 ${bandMessage}</strong>
+            </div>
+            <h4>🔍 Avaliação por Critério IELTS Writing Task 1</h4>
+            <ul class="criteria-list">
+                <li><strong>🎯 Task Achievement (25%):</strong> ${feedback.taskAchievement.details.join(' ')}</li>
+                <li><strong>🔗 Coherence & Cohesion (25%):</strong> ${feedback.coherence.details.join(' ')}</li>
+                <li><strong>📖 Lexical Resource (25%):</strong> ${feedback.vocabulary.details.join(' ')}</li>
+                <li><strong>📝 Grammatical Range (25%):</strong> ${feedback.grammar.details.join(' ')}</li>
+            </ul>
+            <div class="example-text" style="margin-top: 15px;">
+                <strong>🎯 Estrutura recomendada para Band 7+ (Task 1):</strong><br>
+                • <strong>Parágrafo 1 (Introdução):</strong> Paráfrase do gráfico/tabela (1 frase).<br>
+                • <strong>Parágrafo 2 (Overview):</strong> Duas tendências principais ou comparação geral (ex: "Overall, France and Spain saw growth, while Japan declined.").<br>
+                • <strong>Parágrafo 3 (Detalhes):</strong> Descreva os dados agrupando tendências similares, com números específicos.<br>
+                • <strong>Parágrafo 4 (Detalhes adicionais):</strong> Complete comparações restantes.<br>
+                • ❌ NUNCA dê opinião pessoal ou sugestões.
+            </div>
+            <div class="example-text" style="background: #e6f7e6;">
+                💡 <strong>Exemplo de overview nota máxima:</strong> "Overall, France and Spain experienced a consistent increase in overseas visitors between 1990 and 2020, whereas Japan followed a completely different trend, with a gradual decline over the same period."
+            </div>
+        `;
+        
+        const feedbackDiv = document.getElementById('feedbackArea');
+        feedbackDiv.innerHTML = html;
+        feedbackDiv.style.display = 'block';
+        feedbackDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+</script>
+
+<footer style="text-align:center; margin-top: 50px; padding: 20px; color:#6c757d; border-top: 1px solid #e2e8f0;">
+    Material criado para estudo — Edson D'Aguiar<br>
+    <span class="copyright">© @InglêsFácilGratuito</span><br>
+    📊 IELTS Academic Writing Task 1 Simulator — Baseado nos critérios oficiais IELTS e perguntas reais de 2026
+</footer>
+
+</body>
+</html>
